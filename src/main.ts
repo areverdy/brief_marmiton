@@ -38,21 +38,23 @@ note.setAttribute("type","text")
 const label3 = document.createElement('label')
 label3.innerText = 'note'
 
-
-const inputBoxNom = document.createElement('gftrjyfj')
-inputBoxNom.classList.add("toto")
+const inputBoxNom = document.createElement('div')
+inputBoxNom.classList.add("solo-input")
 inputBoxNom.appendChild(label)
 inputBoxNom.appendChild(nom)
 
 const inputBoxlienImage = document.createElement('div')
+inputBoxlienImage.classList.add("solo-input")
 inputBoxlienImage.appendChild(label1)
 inputBoxlienImage.appendChild(lien_image)
 
 const inputBoxDuree = document.createElement('div')
+inputBoxDuree.classList.add("solo-input")
 inputBoxDuree.appendChild(label2)
 inputBoxDuree.appendChild(duree)
 
 const inputBoxNote = document.createElement('div')
+inputBoxNote.classList.add("solo-input")
 inputBoxNote.appendChild(label3)
 inputBoxNote.appendChild(note)
 
