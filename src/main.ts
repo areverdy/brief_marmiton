@@ -67,7 +67,43 @@ const addButton = document.createElement('input')
 addButton.setAttribute('type', 'submit')
 addButton.value = "Ajouter"
 
-solo_imput.appendChild(form)
 form.appendChild(zone_imput) 
 form.appendChild(addButton) 
 app.appendChild(form)
+
+const titreListeRecettes = document.createElement('h2')
+titreListeRecettes.innerText = "Mes Recettes"
+app.appendChild(titreListeRecettes)
+
+const listeRecette = document.createElement('div')
+listeRecette.classList.add("liste-recette")
+app.appendChild(listeRecette)
+
+
+addButton.addEventListener("click", () => {
+    const recette = document.createElement("div") as HTMLDivElement;
+    recette.classList.add('recette')
+    const labelrecette = document.createElement("label") as HTMLLabelElement;
+    labelrecette.innerText = nom.value
+    
+    const labelnote = document.createElement("label") as HTMLLabelElement;
+    labelnote.innerText = note.value
+    
+    const labelduree = document.createElement("label") as HTMLLabelElement;
+    labelduree.innerText = duree.value
+    
+    const imageRecette = document.createElement('img') as HTMLImageElement
+    imageRecette.setAttribute('src', lien_image.value)
+    
+    const inforecette = document.createElement("div")
+    inforecette.setAttribute('class', "infos-recette")
+
+    inforecette.appendChild(labelrecette)
+    inforecette.appendChild(labelnote)
+    inforecette.appendChild(labelduree)
+    
+    recette.appendChild(inforecette)
+    recette.appendChild(imageRecette)
+
+    listeRecette.appendChild(recette)
+})

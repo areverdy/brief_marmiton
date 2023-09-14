@@ -9,15 +9,24 @@ h1 {
   font-size: 72px;
   margin-bottom: 20px;
 }
+
+h2 {
+  margin-left: 25%;
+}
+
 .app {
   display: flex;
   flex-direction: column;
+  align-items: center;
+ 
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  margin-left: 25%;
+  margin-right: auto;
+  width: 50%;
   height: 50%;
   border: 1px solid;
 }
@@ -33,5 +42,38 @@ h1 {
 .solo-input {
   display: flex;
   flex-direction: column;
+  margin-top: 2%;
   width: 40%;
 }   
+
+.liste-recette {
+  display: flex;
+  flex-direction: column;
+  margin-left: 25%;
+  margin-right: auto;
+  width: 50%;
+  height: 40%;
+  border: 1px solid;
+}
+
+.recette {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.infos-recette {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 50%;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+
+.imageRecette {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  width: 50%;
+}
