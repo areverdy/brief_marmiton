@@ -77,7 +77,8 @@ app.appendChild(titreListeRecettes)
 
 const listeRecette = document.createElement('div')
 listeRecette.classList.add("liste-recette")
-app.appendChild(listeRecette)
+
+
 
 
 addButton.addEventListener("click", async () => {
@@ -97,7 +98,7 @@ addButton.addEventListener("click", async () => {
     const data = await response.json()
     console.log(data)
 
-    ajouterUneRecette(nom.value, lien_image.value, duree.value, note.value)
+    ajouterUneRecette(nom.value, lien_image.value, duree.value, note.value, data.id)
 })
 
 async function init(){
@@ -108,15 +109,14 @@ async function init(){
     console.log(myresult)
     myresult.forEach( (element: any) => {
         console.log(element)  
-        ajouterUneRecette(element.nom, element.lien_image, element.duree, element.note)
+        ajouterUneRecette(element.nom, element.lien_image, element.duree, element.note, element.id)
     });
   } 
 
   init()
 
-  function ajouterUneRecette(nom: string, lien: string, duree: string, note: string){
-    const recette = document.createElement("div") as HTMLDivElement;
-    recette.classList.add('recette')
+  function ajouterUneRecette(nom: string, lien: string, duree: string, note: string, id: number){
+
     const labelrecette = document.createElement("label") as HTMLLabelElement;
     labelrecette.innerText = nom;
     
@@ -133,12 +133,36 @@ async function init(){
     const inforecette = document.createElement("div")
     inforecette.setAttribute('class', "infos-recette")
 
+    const recette = document.createElement('div')
+    recette.classList.add("recette")
+
+    const btnDelete = document.createElement('button')
+    btnDelete.innerText = "supprimer"
+    btnDelete.addEventListener('click', async () => {
+        await supprimerrecette(id)
+        recette.remove()
+    })
+
     inforecette.appendChild(labelrecette)
     inforecette.appendChild(labelnote)
     inforecette.appendChild(labelduree)
+    inforecette.appendChild(btnDelete)
+
     
+
     recette.appendChild(inforecette)
     recette.appendChild(imageRecette)
 
     listeRecette.appendChild(recette)
+
+    app.appendChild(listeRecette)
+
+  }
+
+  async function supprimerrecette (id: number) {
+    const sup = await fetch("http://localhost:3030/marmitops/" + id, {
+        method: "DELETE",
+    })
+    const rsup = await sup.json ();
+    console.log(rsup)
   }

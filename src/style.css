@@ -53,13 +53,14 @@ h2 {
   margin-right: auto;
   width: 50%;
   height: 40%;
-  border: 1px solid;
 }
 
 .recette {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border : 1px solid;
+  margin-bottom: 20px;
 }
 
 .infos-recette {
@@ -76,4 +77,6 @@ h2 {
   flex-direction: column;
   align-self: flex-end;
   width: 50%;
+  margin: 10px;
+  aspect-ratio: 16/9;
 }
