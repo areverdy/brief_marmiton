@@ -80,20 +80,55 @@ listeRecette.classList.add("liste-recette")
 app.appendChild(listeRecette)
 
 
-addButton.addEventListener("click", () => {
+addButton.addEventListener("click", async () => {
+    const response = await fetch("http://localhost:3030/marmitops", {
+        headers: new Headers({
+            "Content-Type": "application/json",
+        }),
+        method: "POST",
+        body: JSON.stringify({
+            nom: nom.value,
+            lien_image: lien_image.value,
+            duree: duree.value,
+            note: note.value
+        }),
+    })
+    console.log(response)
+    const data = await response.json()
+    console.log(data)
+
+    ajouterUneRecette(nom.value, lien_image.value, duree.value, note.value)
+})
+
+async function init(){
+    // fetch GET recipes
+    const res = await fetch("http://localhost:3030/marmitops")
+    // ajout des recettes dans le DOM 
+    const myresult = await res.json();
+    console.log(myresult)
+    myresult.forEach( (element: any) => {
+        console.log(element)  
+        ajouterUneRecette(element.nom, element.lien_image, element.duree, element.note)
+    });
+  } 
+
+  init()
+
+  function ajouterUneRecette(nom: string, lien: string, duree: string, note: string){
     const recette = document.createElement("div") as HTMLDivElement;
     recette.classList.add('recette')
     const labelrecette = document.createElement("label") as HTMLLabelElement;
-    labelrecette.innerText = nom.value
+    labelrecette.innerText = nom;
     
     const labelnote = document.createElement("label") as HTMLLabelElement;
-    labelnote.innerText = note.value
+    labelnote.innerText = note
     
     const labelduree = document.createElement("label") as HTMLLabelElement;
-    labelduree.innerText = duree.value
+    labelduree.innerText = duree
     
     const imageRecette = document.createElement('img') as HTMLImageElement
-    imageRecette.setAttribute('src', lien_image.value)
+    imageRecette.classList.add('imageRecette')
+    imageRecette.setAttribute('src', lien)
     
     const inforecette = document.createElement("div")
     inforecette.setAttribute('class', "infos-recette")
@@ -106,4 +141,4 @@ addButton.addEventListener("click", () => {
     recette.appendChild(imageRecette)
 
     listeRecette.appendChild(recette)
-})
+  }
